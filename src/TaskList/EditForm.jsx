@@ -1,16 +1,11 @@
 import React from "react";
 
-// Форма редактирования задачи.
-// Принимает от родителя следующие prop'ы
-// - taskText - текст задачи, которые можно отредактировать.
-// - onSave - функция, которая вызывается, если пользователь нажал кнопку Save и текст не пустой, получает текст из input'а
-// - onCancel - функция, которая вызывается, если пользователь нажал кнопку Cancel
 export class EditForm extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      text: this.props.taskText, // начально значения текста в поле берется из prop'а, переданного родителем
+      name: this.props.userName, 
       phone: this.props.userPhone
     };
   }
@@ -20,10 +15,10 @@ export class EditForm extends React.Component {
       <form onSubmit={e => e.preventDefault()}>
         <input
           type="text"
-          value={this.state.text}
+          value={this.state.name}
           onChange={e =>
             this.setState({
-              text: e.target.value
+              name: e.target.value
             })
           }
         />
@@ -38,9 +33,9 @@ export class EditForm extends React.Component {
         />
         <button
           onClick={() => {
-            if (this.state.text && this.state.text.trim()) {
-              this.setState({ text: "" , phone: "" });
-              this.props.onSave(this.state.text, this.state.phone);
+            if (this.state.name && this.state.name.trim()) {
+              this.setState({ name: "" , phone: "" });
+              this.props.onSave(this.state.name, this.state.phone);
             }
           }}
         >
