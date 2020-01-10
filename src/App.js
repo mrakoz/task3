@@ -1,26 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { FormWithInvalidInputPrevention } from "./FormWithInvalidInputPrevention";
+import { FormValidationOnSubmit } from "./FormValidationOnSubmit";
+import { FormValidationOnBlur } from "./FormValidationOnBlur";
+import { TaskList } from "./TaskList/TaskList";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
-
-export default App;
+export const App = () => (
+  <>
+    {/* <h3>Форма с отменой невалидного ввода</h3>
+    <FormWithInvalidInputPrevention /> */}
+    {/* <h3>Форма с валидацией на отправку</h3>
+    <FormValidationOnSubmit /> */}
+    {/* <h3>Форма с валидацией на потерю фокуса</h3>
+    <FormValidationOnBlur /> */}
+    <h3>Форма добавления нового клиента</h3>
+    <TaskList />
+  </>
+);
