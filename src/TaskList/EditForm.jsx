@@ -39,9 +39,9 @@ export class EditForm extends React.Component {
             }
           }}
         >
-          Save
+          Сохранить
         </button>
-        <button onClick={() => this.props.onCancel()}>Cancel</button>
+        <button onClick={() => this.props.onCancel()}>Отмена</button>
       </form>
     );
   }

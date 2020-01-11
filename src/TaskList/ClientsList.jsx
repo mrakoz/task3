@@ -11,6 +11,22 @@ function addClient(
   return [...clients, clientToAdd];
 }
 
+function deleteClient(
+  clients, 
+  id
+
+) {
+
+  const clientIndex = clients.findIndex(client => client.id === id); 
+  console.log(clients[clientIndex])
+  return (
+  [
+    ...clients.slice(0, clientIndex),
+    ...clients.slice(clientIndex + 1)
+  ]
+  );
+}
+
 function updateClient(
   clients, 
   id, 
@@ -51,7 +67,7 @@ export class ClientsList extends React.Component {
 
     clientToEdit: null,
 
-    filter: Filter.ALL
+
   };
 
   nextId = 4;
@@ -139,11 +155,11 @@ export class ClientsList extends React.Component {
                     Правка
                   </button>
                   <button
-                    onClick={() =>
+                    onClick={() => {
                       this.setState({
-                        clientToEdit: client.id
-                      })
-                    }
+                        clients: deleteClient(this.state.clients,client.id)
+                      });
+                    }}
                   >
                     Удалить
                   </button>
