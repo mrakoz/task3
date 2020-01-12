@@ -1,12 +1,14 @@
 import React from "react";
+import { Status } from "./Status";
 
 export class EditForm extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      name: this.props.userName, 
-      phone: this.props.userPhone
+      name: this.props.userName,
+      phone: this.props.userPhone,
+      status: this.props.status
     };
   }
 
@@ -31,11 +33,34 @@ export class EditForm extends React.Component {
             })
           }
         />
+        {/* <Status
+        test="test"
+          current={this.props.status}
+          onChangeSelect={current => {
+            this.setState({
+              status: current
+            });
+          }}
+        /> */}
+        <select
+          value={this.state.status}
+          onChange={e => {
+            this.setState({ status: e.target.value });
+          }}
+        >
+          <option value="one">Одна покупка</option>
+          <option value="moreOne">Больше одной покупки</option>
+          <option value="none">Не покупал</option>
+        </select>
         <button
           onClick={() => {
             if (this.state.name && this.state.name.trim()) {
-              this.setState({ name: "" , phone: "" });
-              this.props.onSave(this.state.name, this.state.phone);
+              this.setState({ name: "", phone: "" });
+              this.props.onSave(
+                this.state.name,
+                this.state.phone,
+                this.state.status
+              );
             }
           }}
         >
