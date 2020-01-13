@@ -21,3 +21,18 @@ table td {
     display: flex;
     justify-content: center;
 }
+
+input.red {
+  background-color: #ffa8a8;
+} 
+
+input.green {
+  background-color: #9bfbaa;
+} 
+button.red {
+  background-color: #ffa8a8;
+} 
+
+button.green {
+  background-color: #9bfbaa;
+} 

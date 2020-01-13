@@ -1,5 +1,7 @@
 import React from "react";
 import { Status } from "./Status";
+import validator from "validator";
+import { isValidLoginCharacter } from "../validators";
 
 export class EditForm extends React.Component {
   constructor(props) {
@@ -25,13 +27,17 @@ export class EditForm extends React.Component {
           }
         />
         <input
-          type="text"
           value={this.state.phone}
-          onChange={e =>
-            this.setState({
-              phone: e.target.value
-            })
+          className={
+            validator.isMobilePhone(this.state.phone, "be-BY") ? "green" : "red"
           }
+          placeholder="+375 xx xxx xx xx"
+          maxLength="13"
+          onChange={evt => {
+            this.setState({
+              phone: evt.target.value
+            });
+          }}
         />
         {/* <Status
         test="test"
@@ -53,6 +59,10 @@ export class EditForm extends React.Component {
           <option value="none">Не покупал</option>
         </select>
         <button
+          disabled={!validator.isMobilePhone(this.state.phone, "be-BY")}
+          className={
+            validator.isMobilePhone(this.state.phone, "be-BY") ? "green" : ""
+          }
           onClick={() => {
             if (this.state.name && this.state.name.trim()) {
               this.setState({ name: "", phone: "" });

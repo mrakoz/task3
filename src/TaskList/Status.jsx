@@ -5,11 +5,8 @@ export class Status extends React.Component {
     super(props);
 
     this.state = {
-      current: this.props.status,
+      current: this.props.status
     };
-   console.log("Status props:", this.props.status)
-   console.log("Status state:", this.state.current)
-   console.log("Test props:", this.props.test)
   }
 
   render() {
@@ -19,7 +16,7 @@ export class Status extends React.Component {
         onChange={e => {
           this.setState({ current: e.target.value }, function() {
             console.log("Callback", this.state.current);
-           })
+          });
           this.props.onChangeSelect(e.target.value);
         }}
       >

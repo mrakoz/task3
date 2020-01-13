@@ -1,5 +1,7 @@
 import React from "react";
 import { Status } from "./Status";
+import validator from "validator";
+import { isValidLoginCharacter } from "../validators";
 
 export class AddForm extends React.Component {
   constructor(props) {
@@ -8,7 +10,8 @@ export class AddForm extends React.Component {
     this.state = {
       name: "",
       phone: "",
-      status: "none"
+      status: "none",
+      valid: false
     };
   }
 
@@ -19,21 +22,24 @@ export class AddForm extends React.Component {
           type="text"
           placeholder="Имя"
           value={this.state.name}
-          onChange={e =>
+          onChange={e => {
             this.setState({
               name: e.target.value
-            })
-          }
+            });
+          }}
         />
         <input
-          type="text"
-          placeholder="Номер телефона"
           value={this.state.phone}
-          onChange={e =>
-            this.setState({
-              phone: e.target.value
-            })
+          className={
+            validator.isMobilePhone(this.state.phone, "be-BY") ? "green" : "red"
           }
+          placeholder="+375 xx xxx xx xx"
+          maxLength="13"
+          onChange={evt => {
+            this.setState({
+              phone: evt.target.value
+            });
+          }}
         />
         {/* <Status
           status={this.state.status}
@@ -54,6 +60,11 @@ export class AddForm extends React.Component {
           <option value="none">Не покупал</option>
         </select>
         <button
+          className={
+            validator.isMobilePhone(this.state.phone, "be-BY") ? "green" : ""
+          }
+          type="button"
+          disabled={!validator.isMobilePhone(this.state.phone, "be-BY")}
           onClick={() => {
             if (
               this.state.name &&
