@@ -11,13 +11,15 @@ export class AddForm extends React.Component {
       name: "",
       phone: "",
       status: "none",
-      valid: false
+      valid: false,
+      added: false
     };
   }
 
   render() {
     return (
       <form onSubmit={e => e.preventDefault()}>
+        <h3>Форма добавления нового пользователя</h3>
         <input
           type="text"
           placeholder="Имя"
@@ -72,17 +74,25 @@ export class AddForm extends React.Component {
               this.state.phone &&
               this.state.phone.trim()
             ) {
-              this.setState({ name: "", phone: "", status: "none" });
+              this.setState({
+                name: "",
+                phone: "",
+                status: "none",
+                added: true
+              });
               this.props.onSave(
                 this.state.name,
                 this.state.phone,
-                this.state.status
+                this.state.status,
+                this.state.added
               );
             }
           }}
         >
           Добавить
         </button>
+
+        <button onClick={() => this.props.Cancel()}>Отмена</button>
       </form>
     );
   }

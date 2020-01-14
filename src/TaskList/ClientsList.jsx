@@ -58,7 +58,8 @@ export class ClientsList extends React.Component {
       }
     ],
 
-    clientToEdit: null
+    clientToEdit: null,
+    addClient: false
   };
 
   nextId = 4;
@@ -113,10 +114,10 @@ export class ClientsList extends React.Component {
       );
     }
 
-    return (
-      <>
+    if (this.state.addClient) {
+      return (
         <AddForm
-          onSave={(name, phone, status) => {
+          onSave={(name, phone, status, added) => {
             const client = {
               id: this.nextId,
               name,
@@ -125,12 +126,33 @@ export class ClientsList extends React.Component {
             };
 
             this.setState({
-              clients: addClient(this.state.clients, client)
+              clients: addClient(this.state.clients, client),
+              addClient: false
             });
 
             this.nextId++;
           }}
+          Cancel={() =>
+            this.setState({
+              addClient: false
+            })
+          }
         />
+      );
+    }
+
+    return (
+      <>
+        <h3>Добавить нового пользователя</h3>
+        <button
+          onClick={() => {
+            this.setState({
+              addClient: true
+            });
+          }}
+        >
+          Начать
+        </button>
         <h3>Список клиентов</h3>
         <div className="table">
           <table>

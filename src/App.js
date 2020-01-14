@@ -7,7 +7,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 export const App = () => (
   <>
-    <h3>Форма добавления нового клиента</h3>
     <ClientsList />
   </>
 );
